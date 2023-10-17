@@ -10,4 +10,7 @@ public interface UsuarioService {
   Optional<Usuario> getById(Long id);
   Usuario save(Usuario usuario);
   void deleteById(Long id);
+
+  Optional<Usuario> porEmail(String email);
+  boolean existePorEmail(String email);
 }
