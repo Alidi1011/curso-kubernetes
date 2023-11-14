@@ -1,16 +1,17 @@
-package com.aarteaga.msvc.usuarios.services;
+package com.aarteaga.msvc.cursos.services;
 
-import com.aarteaga.msvc.usuarios.clients.UsuarioClienteRest;
-import com.aarteaga.msvc.usuarios.models.Usuario;
-import com.aarteaga.msvc.usuarios.models.entities.Curso;
-import com.aarteaga.msvc.usuarios.models.entities.CursoUsuario;
-import com.aarteaga.msvc.usuarios.repositories.CursoRepository;
+import com.aarteaga.msvc.cursos.clients.UsuarioClienteRest;
+import com.aarteaga.msvc.cursos.models.Usuario;
+import com.aarteaga.msvc.cursos.models.entities.Curso;
+import com.aarteaga.msvc.cursos.models.entities.CursoUsuario;
+import com.aarteaga.msvc.cursos.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -27,6 +28,7 @@ public class CursoServiceImpl implements CursoService{
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Optional<Curso> porId(Long id) {
     return repository.findById(id);
   }
@@ -90,4 +92,23 @@ public class CursoServiceImpl implements CursoService{
       return Optional.of(usuarioMsvc);
     }
     return Optional.empty();  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public Optional<Curso> porIdConUsuarios(Long id) {
+    Optional<Curso> o = repository.findById(id);
+    if(o.isPresent()){
+      Curso curso = o.get();
+      if(!curso.getCursoUsuarios().isEmpty()) {
+        List<Long> ids = curso.getCursoUsuarios().stream().map(cu -> cu.getUsuarioId())
+          .collect(Collectors.toList());
+        List<Usuario> usuarios = client.obtenerAlumnosPorCurso(ids);
+
+        curso.setUsuarios(usuarios);
+
+      }
+      return Optional.of(curso);
+    }
+    return Optional.empty();
+  }
 }

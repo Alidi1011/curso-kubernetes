@@ -1,4 +1,4 @@
-package com.aarteaga.msvc.usuarios;
+package com.aarteaga.msvc.cursos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

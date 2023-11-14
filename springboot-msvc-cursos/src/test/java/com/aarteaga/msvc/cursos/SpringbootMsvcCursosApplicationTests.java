@@ -1,4 +1,4 @@
-package com.aarteaga.msvc.usuarios;
+package com.aarteaga.msvc.cursos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

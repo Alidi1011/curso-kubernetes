@@ -1,7 +1,7 @@
-package com.aarteaga.msvc.usuarios.services;
+package com.aarteaga.msvc.cursos.services;
 
-import com.aarteaga.msvc.usuarios.models.Usuario;
-import com.aarteaga.msvc.usuarios.models.entities.Curso;
+import com.aarteaga.msvc.cursos.models.Usuario;
+import com.aarteaga.msvc.cursos.models.entities.Curso;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,4 +16,5 @@ public interface CursoService {
   Optional<Usuario> crearUsuario(Usuario usuario, Long cursoId);
   Optional<Usuario> eliminarUsuario(Usuario usuario, Long cursoId);
 
+  Optional<Curso> porIdConUsuarios(Long id);
 }

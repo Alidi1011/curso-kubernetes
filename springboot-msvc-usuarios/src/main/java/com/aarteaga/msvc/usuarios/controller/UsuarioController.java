@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -91,6 +92,12 @@ public class UsuarioController {
     }
     return ResponseEntity.notFound().build();
   }
+
+  @GetMapping("/usuarios-por-curso")
+  public ResponseEntity<?> obtenerAlumnosPorCurso(@RequestParam List<Long> ids){
+    return ResponseEntity.ok().body(service.listarPorIds(ids));
+  }
+
   private ResponseEntity<Map<String, String>> validar(BindingResult result){
     Map<String, String>  errors = new HashMap<>();
     result.getFieldErrors().forEach(err -> {

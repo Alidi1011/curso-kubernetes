@@ -1,8 +1,8 @@
-package com.aarteaga.msvc.usuarios.controllers;
+package com.aarteaga.msvc.cursos.controllers;
 
-import com.aarteaga.msvc.usuarios.models.Usuario;
-import com.aarteaga.msvc.usuarios.models.entities.Curso;
-import com.aarteaga.msvc.usuarios.services.CursoService;
+import com.aarteaga.msvc.cursos.services.CursoService;
+import com.aarteaga.msvc.cursos.models.Usuario;
+import com.aarteaga.msvc.cursos.models.entities.Curso;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,7 +36,8 @@ public class CursoController {
 
   @GetMapping("/{id}")
   public ResponseEntity<?> detalle(@PathVariable Long id){
-    Optional<Curso> c =  service.porId(id);
+    //Optional<Curso> c =  service.porId(id);
+    Optional<Curso> c =  service.porIdConUsuarios(id);
     if(c.isPresent()){
       return ResponseEntity.ok(c.get());
     }

@@ -1,4 +1,4 @@
-package com.aarteaga.msvc.usuarios.models.entities;
+package com.aarteaga.msvc.cursos.models.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

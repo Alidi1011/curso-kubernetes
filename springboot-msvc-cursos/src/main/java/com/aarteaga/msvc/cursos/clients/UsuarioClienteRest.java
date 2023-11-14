@@ -1,11 +1,16 @@
-package com.aarteaga.msvc.usuarios.clients;
+package com.aarteaga.msvc.cursos.clients;
 
-import com.aarteaga.msvc.usuarios.models.Usuario;
+import com.aarteaga.msvc.cursos.models.Usuario;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Iterator;
+import java.util.List;
 
 @FeignClient(name = "msvc-usuarios", url="localhost:8001")
 public interface UsuarioClienteRest {
@@ -14,4 +19,7 @@ public interface UsuarioClienteRest {
 
   @PostMapping("/")
   Usuario crear(@RequestBody Usuario usuario);
+
+  @GetMapping("/usuarios-por-curso")
+  List<Usuario> obtenerAlumnosPorCurso(@RequestParam Iterable<Long> ids);
 }

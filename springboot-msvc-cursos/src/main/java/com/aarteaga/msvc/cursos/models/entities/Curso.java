@@ -1,6 +1,6 @@
-package com.aarteaga.msvc.usuarios.models.entities;
+package com.aarteaga.msvc.cursos.models.entities;
 
-import com.aarteaga.msvc.usuarios.models.Usuario;
+import com.aarteaga.msvc.cursos.models.Usuario;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
