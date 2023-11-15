@@ -1,5 +1,6 @@
 package com.aarteaga.msvc.usuarios.services;
 
+import com.aarteaga.msvc.usuarios.clients.CursoClienteRest;
 import com.aarteaga.msvc.usuarios.models.entity.Usuario;
 import com.aarteaga.msvc.usuarios.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,10 @@ import java.util.Optional;
 public class UsuarioServiceImpl implements UsuarioService{
   @Autowired
   private UsuarioRepository repository;
+
+  @Autowired
+  private CursoClienteRest client;
+
   @Transactional(readOnly = true)
   public List<Usuario> findAll() {
     return (List<Usuario>) repository.findAll();
@@ -31,6 +36,7 @@ public class UsuarioServiceImpl implements UsuarioService{
   @Transactional
   public void deleteById(Long id) {
       repository.deleteById(id);
+      client.eliminarCursoUsuarioPorId(id);
   }
 
   @Override
