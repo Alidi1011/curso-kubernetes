@@ -36,6 +36,7 @@ public class UsuarioController {
   public ResponseEntity<?> detalle(@PathVariable(name = "id") Long id){
     Optional<Usuario> usuarioOptional = service.getById(id);
     if(usuarioOptional.isPresent()){
+      System.out.println("actualizado get user by id");
       return ResponseEntity.ok().body(usuarioOptional.get());
     }
     return ResponseEntity.notFound().build();
