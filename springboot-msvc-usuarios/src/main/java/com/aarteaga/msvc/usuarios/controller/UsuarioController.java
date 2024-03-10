@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+
 import javax.validation.Valid;
 import java.util.Collections;
 import java.util.HashMap;
@@ -26,6 +29,15 @@ import java.util.Optional;
 public class UsuarioController {
   @Autowired
   private UsuarioService service;
+
+  @Autowired
+  private ApplicationContext context;
+
+  @GetMapping("/crash")
+  public void crash(){
+    ((ConfigurableApplicationContext)context).close();
+  }
+
 
   @GetMapping
   public List<Usuario> listar(){

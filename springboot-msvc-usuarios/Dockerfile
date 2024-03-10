@@ -23,7 +23,7 @@ RUN mkdir ./logs
 ARG MSVC_NAME=springboot-msvc-usuarios
 ARG TARGET_FOLDER=/app/$MSVC_NAME/target
 COPY --from=builder $TARGET_FOLDER/springboot-msvc-usuarios-0.0.1-SNAPSHOT.jar .
-ARG PORT_APP=8000
+ARG PORT_APP=8001
 ENV PORT $PORT_APP
 EXPOSE $PORT
 
