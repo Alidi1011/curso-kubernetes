@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Iterator;
 import java.util.List;
 
-@FeignClient(name = "msvc-usuarios", url="${msvc.usuarios.url}")
+/*@FeignClient(name = "msvc-usuarios", url="${msvc.usuarios.url}")*/
+@FeignClient(name = "msvc-usuarios")
 public interface UsuarioClienteRest {
   @GetMapping("/{id}")
   Usuario detalle(@PathVariable Long id);
