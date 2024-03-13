@@ -3,6 +3,7 @@ package com.aarteaga.msvc.usuarios.controller;
 import com.aarteaga.msvc.usuarios.models.entity.Usuario;
 import com.aarteaga.msvc.usuarios.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,9 @@ public class UsuarioController {
   @Autowired
   private ApplicationContext context;
 
+  @Autowired
+  private Environment env;
+
   @GetMapping("/crash")
   public void crash(){
     ((ConfigurableApplicationContext)context).close();
@@ -40,8 +44,12 @@ public class UsuarioController {
 
 
   @GetMapping
-  public List<Usuario> listar(){
-    return service.findAll();
+  public Map<String, Object> listar(){
+    Map<String, Object> body = new HashMap<>();
+    body.put("users", service.findAll());
+    body.put("podinfo", env.getProperty("MY_POD_NAME") + ": " + env.getProperty("MY_POD_IP"));
+    //return Collections.singletonMap("users", service.findAll());
+    return body;
   }
 
   @GetMapping("/{id}")
