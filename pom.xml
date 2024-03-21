@@ -19,6 +19,7 @@
     <modules>
         <module>springboot-msvc-usuarios</module>
         <module>springboot-msvc-cursos</module>
+        <module>msvc-gateway</module>
     </modules>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
